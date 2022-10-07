@@ -1,7 +1,5 @@
-import time
-
+from features.pages import paginas
 from behave import *
-from selenium.webdriver.common.by import By
 
 
 def before_feature(context, feature):
@@ -10,50 +8,71 @@ def before_feature(context, feature):
 
         )
 
+
+@given('que acesso o site BlazeDemo')
+def step_impl(context):
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.visit('https://blazedemo.com')
+    assert context.pagina_home.title_check() is True
+
+
 @when(u'clicko em Home')
 def step_impl(context):
-    context.driver.find_element(By.LINK_TEXT, 'home').click()
+    context.pagina_home.click_home()
+
 
 @then(u'exibe pagina de login')
 def step_impl(context):
-    time.sleep(1)
-    assert context.driver.find_element(By.CSS_SELECTOR, 'div.panel-heading').text == 'Login'
+    context.pagina_home = paginas.LoginReg(context)
+    assert context.pagina_home.login_page_check() is True
+
 
 @when(u'clicko em registrar')
 def step_impl(context):
-    context.driver.find_element(By.LINK_TEXT, 'Register').click()
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.click_register()
+
+@then(u'exibe pagina de registro')
+def step_impl(context):
+    context.pagina_home = paginas.LoginReg(context)
+    assert context.pagina_home.registro_page_check() is True
+
 
 @when(u'preencho "{name}" "{company}" "{email}" e "{password}"')
 def step_impl(context, name, company, email, password):
-    time.sleep(1)
-    context.driver.find_element(By.ID, 'name').send_keys(name)
-    context.driver.find_element(By.ID, 'company').send_keys(company)
-    context.driver.find_element(By.ID, 'email').send_keys(email)
-    context.driver.find_element(By.ID, 'password').send_keys(password)
-    context.driver.find_element(By.ID, 'password-confirm').send_keys(password)
+    context.pagina_home = paginas.LoginReg(context)
+    context.pagina_home.preenche_nome = name
+    context.pagina_home.preenche_empresa = company
+    context.pagina_home.preenche_email = email
+    context.pagina_home.preenche_senha = password
+    context.pagina_home.preenche_confirma = password
+
 
 @when(u'preencho "{email}" e "{senha}"')
 def step_impl(context, email, senha):
-    time.sleep(1)
-    context.driver.find_element(By.ID, 'email').send_keys(email)
-    context.driver.find_element(By.ID, 'password').send_keys(senha)
+    context.pagina_home = paginas.LoginReg(context)
+    context.pagina_home.preenche_email = email
+    context.pagina_home.preenche_senha = senha
 
 @when(u'clicko em registro')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, 'button.btn.btn-primary').click()
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.click_LR()
 
 
 @when(u'clicko em login')
 def step_impl(context):
-    context.driver.find_element(By.CSS_SELECTOR, 'button.btn.btn-primary').click()
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.click_LR()
 
 
 @then(u'verifico que login foi feito')
 def step_impl(context):
-    time.sleep(1)
-    assert context.driver.find_element(By.CSS_SELECTOR, 'div.panel-heading').text == 'Dashboard'
+    context.pagina_home = paginas.LoginReg(context)
+    assert context.pagina_home.login_done_check() is True
+
 
 @then(u'verifico que registro não existe')
 def step_impl(context):
-    time.sleep(1)
-    assert context.driver.find_element(By.CSS_SELECTOR, 'span.help-block').text == 'These credentials do not match our records.'
+    context.pagina_home = paginas.LoginReg(context)
+    assert context.pagina_home.registro_nao_existente() is True

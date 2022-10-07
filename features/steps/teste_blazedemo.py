@@ -1,6 +1,5 @@
 from behave import *
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
+from features.pages import paginas
 
 
 def before_feature(context, feature):
@@ -10,38 +9,38 @@ def before_feature(context, feature):
         )
 
 
-@given('que acesso o site BlazeDemo')
-def que_acesso_o_site_BlazeDemo(context):
-    context.driver.get("https://blazedemo.com")
-    print('Passo 1 - Abriu site.')
-
-
-@when('pesquiso passagens de "{origem}" a "{destino}"')
+@when(u'pesquiso passagens de "{origem}" a "{destino}"')
 def pesquiso_passagens_de_sao_paulo_a_new_york(context, origem, destino):
-    elemento_origem = context.driver.find_element(By.NAME, 'fromPort')
-    objeto_origem = Select(elemento_origem)
-    objeto_origem.select_by_visible_text(origem)
-    elemento_destino = context.driver.find_element(By.NAME, 'toPort')
-    objeto_destino = Select(elemento_destino)
-    objeto_destino.select_by_visible_text(destino)
-    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
-    print('Passo 2 - Pesquisou.')
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.seleciona_origem(origem)
+    context.pagina_home.seleciona_destino(destino)
+    context.pagina_home.click_search()
 
 
-@when('seleciono o primeiro voo')
+@when(u'seleciono o primeiro voo')
 def seleciono_o_primeiro_voo(context):
-    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-small').click()
-    print('Passo 3 - Selecionou primeiro voo.')
+    context.pagina_home = paginas.Voos(context)
+    context.pagina_home.selecionar_primeiro()
 
 
-@when('preencho os dados de pagamento')
-def preencho_os_dados_de_pagamento(context):
-    context.driver.find_element(By.ID, 'inputName').send_keys('Pedro Trilles')
-    context.driver.find_element(By.CSS_SELECTOR, 'input.btn.btn-primary').click()
-    print('Passo 4 - Preencheu dados.')
+@when(u'preencho os dados de pagamento, com "{nome}", "{endereco}", "{cidade}", "{estado}", "{cep}",'
+      u' "{numeroCart}", "{mesCart}", "{anoCart}", "{nomeCart}" e efetuo compra')
+def preencho_os_dados_de_pagamento(context, nome, endereco, cidade, estado, cep, numeroCart, mesCart, anoCart, nomeCart):
+    context.pagina_home = paginas.Voos(context)
+    context.pagina_home.preenche_NOMECOMP = nome
+    context.pagina_home.preenche_END = endereco
+    context.pagina_home.preenche_CIDADE = cidade
+    context.pagina_home.preenche_ESTADO = estado
+    context.pagina_home.preenche_CEP = cep
+    context.pagina_home.preenche_CARTAO = numeroCart
+    context.pagina_home.preenche_MES = mesCart
+    context.pagina_home.preenche_ANO = anoCart
+    context.pagina_home.preenche_NOMECART = nomeCart
+    context.pagina_home = paginas.Home(context)
+    context.pagina_home.click_search()
 
 
-@then('valido se a passagem foi comprada')
+@then(u'valido se a passagem foi comprada')
 def valido_se_a_passagem_foi_comprada(context):
-    assert context.driver.title == 'BlazeDemo Confirmation'
-    print('Passo 5 - Validou compra.')
+    context.pagina_home = paginas.Home(context)
+    assert context.pagina_home.compra_check() is True

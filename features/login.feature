@@ -17,9 +17,10 @@ Feature: Login
     When clicko em Home
     Then exibe pagina de login
     When clicko em registrar
-    And preencho <name> <company> <email> e <password>
+    Then exibe pagina de registro
+    When preencho <name> <company> <email> e <password>
     And clicko em registro
     Then verifico que login foi feito
     Examples:
     | name                 | company            | email                        | password        |
-    | "teste89"            | "casa"             | "abacaxi@banana.morango3"    | "535689"        |
+    | "teste109"            | "casa"             | "abacaxi@banana.morango7"    | "535689"        |
