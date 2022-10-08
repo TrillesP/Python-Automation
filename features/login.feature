@@ -23,4 +23,7 @@ Feature: Login
     Then verifico que login foi feito
     Examples:
     | name                 | company            | email                        | password        |
-    | "teste109"            | "casa"             | "abacaxi@banana.morango7"    | "535689"        |
+    | "teste119"           | "casa"             | "abacaxi@banana.morango8"    | "535689"        |
+
+    # mudar valores em 'name' e 'email' a
+    # todos novos testes para que o registro ocorra

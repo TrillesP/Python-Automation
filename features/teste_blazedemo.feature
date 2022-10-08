@@ -1,6 +1,6 @@
 @compra_passagem
 Feature: Compra de Passagem Aerea
-  Scenario Outline: Viagem de Sao Paulo a New York
+  Scenario Outline: Viagens
     Given que acesso o site BlazeDemo
     When pesquiso passagens de <origem> a <destino>
     And seleciono o primeiro voo
