@@ -1,4 +1,4 @@
-from features.pages import paginas
+from features.pages import paginas, elementos
 from behave import *
 
 
@@ -40,19 +40,19 @@ def step_impl(context):
 
 @when(u'preencho "{name}" "{company}" "{email}" e "{password}"')
 def step_impl(context, name, company, email, password):
-    context.pagina_home = paginas.LoginReg(context)
-    context.pagina_home.preenche_nome = name
-    context.pagina_home.preenche_empresa = company
-    context.pagina_home.preenche_email = email
-    context.pagina_home.preenche_senha = password
-    context.pagina_home.preenche_confirma = password
+    context.elemento = elementos.TextBox(context)
+    context.elemento.preenche_nome(name)
+    context.elemento.preenche_empresa(company)
+    context.elemento.preenche_email(email)
+    context.elemento.preenche_senha(password)
+    context.elemento.preenche_senha_confirma(password)
 
 
 @when(u'preencho "{email}" e "{senha}"')
 def step_impl(context, email, senha):
-    context.pagina_home = paginas.LoginReg(context)
-    context.pagina_home.preenche_email = email
-    context.pagina_home.preenche_senha = senha
+    context.elemento = elementos.TextBox(context)
+    context.elemento.preenche_email(email)
+    context.elemento.preenche_senha(senha)
 
 @when(u'clicko em registro')
 def step_impl(context):

@@ -1,5 +1,5 @@
 from behave import *
-from features.pages import paginas
+from features.pages import paginas, elementos
 
 
 def before_feature(context, feature):
@@ -26,16 +26,16 @@ def seleciono_o_primeiro_voo(context):
 @when(u'preencho os dados de pagamento, com "{nome}", "{endereco}", "{cidade}", "{estado}", "{cep}",'
       u' "{numeroCart}", "{mesCart}", "{anoCart}", "{nomeCart}" e efetuo compra')
 def preencho_os_dados_de_pagamento(context, nome, endereco, cidade, estado, cep, numeroCart, mesCart, anoCart, nomeCart):
-    context.pagina_home = paginas.Voos(context)
-    context.pagina_home.preenche_NOMECOMP = nome
-    context.pagina_home.preenche_END = endereco
-    context.pagina_home.preenche_CIDADE = cidade
-    context.pagina_home.preenche_ESTADO = estado
-    context.pagina_home.preenche_CEP = cep
-    context.pagina_home.preenche_CARTAO = numeroCart
-    context.pagina_home.preenche_MES = mesCart
-    context.pagina_home.preenche_ANO = anoCart
-    context.pagina_home.preenche_NOMECART = nomeCart
+    context.elemento = elementos.TextBox(context)
+    context.elemento.preenche_nome_completo(nome)
+    context.elemento.preenche_endereco(endereco)
+    context.elemento.preenche_cidade(cidade)
+    context.elemento.preenche_estado(estado)
+    context.elemento.preenche_cep(cep)
+    context.elemento.preenche_cartao(numeroCart)
+    context.elemento.preenche_cartao_mes(mesCart)
+    context.elemento.preenche_cartao_ano(anoCart)
+    context.elemento.preenche_nome_cartao(nomeCart)
     context.pagina_home = paginas.Home(context)
     context.pagina_home.click_search()
 

@@ -25,5 +25,5 @@ Feature: Login
     | name                 | company            | email                        | password        |
     | "teste119"           | "casa"             | "abacaxi@banana.morango8"    | "535689"        |
 
-    # mudar valores em 'name' e 'email' a
+    # mude valores em 'name' e 'email' a
     # todos novos testes para que o registro ocorra
