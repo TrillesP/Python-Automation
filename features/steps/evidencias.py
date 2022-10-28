@@ -7,7 +7,6 @@ from selenium.webdriver.common.by import By
 
 caminho_print = '../prints/' + datetime.now().strftime('%Y-%m-%d %H-%M-%S') + '/'
 
-
 def testar_blazedemo():
     os.makedirs(caminho_print)
     driver = webdriver.Chrome(executable_path='../drivers/chrome/106/chromedriver.exe')
