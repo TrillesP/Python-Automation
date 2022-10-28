@@ -1,3 +1,3 @@
-Selenium in Python
+<h2>Testes de Automação do site BlazeDemo</h2>
 
-Learning wait, expected conditions, delays and using chrome webdriver to test a search function on https://iterasys.com.br/pt with assertions in Python language.
+Testes no site BlazeDemo feitos no PyCharm, utilizando behave e Cucumber para testar diferentes features e scenarios.
