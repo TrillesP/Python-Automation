@@ -23,7 +23,7 @@ class TextBox(PageFactory, base_page.Base):
         'cartao': ('id', 'creditCardNumber'),
         'cartao_mes': ('id', 'creditCardMonth'),
         'cartao_ano': ('id', 'creditCardYear'),
-        'nome_cartao': ('id', 'nameOnCard'),
+        'nome_cartao': ('id', 'nameOnCard')
     }
 
     def preenche_nome(self, valor):

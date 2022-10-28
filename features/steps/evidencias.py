@@ -3,7 +3,6 @@ import time
 from datetime import datetime
 
 from selenium import webdriver
-import pytest
 from selenium.webdriver.common.by import By
 
 caminho_print = '../prints/' + datetime.now().strftime('%Y-%m-%d %H-%M-%S') + '/'
