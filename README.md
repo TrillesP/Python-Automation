@@ -1,6 +1,22 @@
-:fire: Para rodar o teste é necessário instalar as seguintes extensões do PyCharm, além do próprio programa instalado: <i>'selenium'</i>, <i>'webdriver-manager'</i>, <i>'behave'</i> e <i>'selenium-page-factory'</i>.
+## Objetivo
 
-Para fazer isso, basta clicar na aba 'Python Packages', perto do 'Terminal' dentro do programa, pesquisar pelos nomes e instalar cada uma.
+Demonstrar conhecimentos de testes de automação em Python no site BlazeDemo, utilizando Selenium, behave e Page Factory.
+
+## Primeiros passos
+
+Para rodar o teste é necessário primeiro instalar as libs `selenium`, `webdriver-manager`, `selenium-page-factory` e `behave`.
+
+Na pasta do projeto, rode os seguintes códigos no terminal:
+
+`pip install selenium`
+
+`pip install webdriver-manager`
+
+`pip install selenium-page-factory`
+
+`pip install behave`
+
+Ou, usando PyCharm, pesquise pelas libs em Python Packages e instale.
 
 <h2>Testes de Automação do site BlazeDemo</h2>
 
